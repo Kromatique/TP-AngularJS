@@ -1,11 +1,14 @@
-<form class="col-lg-6" name="frmLogin">
+<form class="col-lg-6" name="frmLogin" ng-submit="valider()">
+
     <div class="form-group">
-        <label for="login">Login</label>
-        <input type="text" class="form-control" />
+        <label for="login">{{::lblLogin}}</label>
+        <input type="text" class="form-control" ng-model="login" />
     </div>
     <div class="form-group">
-        <label for="mdp">Mot de passe</label>
-        <input type="password" class="form-control" />
+        <label for="mdp">{{::lblMdp}}</label>
+        <input type="password" class="form-control" ng-model="mdp" />
     </div>
-    <input type="submit" value="valider">
+    <div class="alert alert-danger" ng-show="msgErreur">{{::lblMessage}}</div>
+    <input type="submit" value="{{::btnValider}}">
 </form>
+<ng-include src="'vues/logo.html'"> </ng-include>
