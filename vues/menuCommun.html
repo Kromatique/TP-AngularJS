@@ -1,10 +1,26 @@
-<nav class="navbar navbar-inverse">
-    <!--un style a été ajouté  pour aligner le menu pour un smartphone -->
-    <ul class="nav navbar-nav" style="display:flex; flex-direction: row; justify-content: center">
-        <li><a href="#/rapports">Gestion des rapports</a></li>
-        <li><a href="#/medecins">Gestion des médecins</a></li>
+ <!-- Barre de menu supérieur-->
+<nav  class="navbar navbar-inverse" >
+    <ul  class="nav navbar-nav" style="display:flex; flex-direction: row; justify-content: center">
+              <li><a href="#/rapports">Gestion des rapports</a></li>
+              <li><a href="#/medecins">Gestion des médecins</a></li> 
     </ul>
 </nav>
-<center>
-    <h3>{{titre}}</h3>
-</center>
+
+<!--Sous-menu -->
+<table>
+    <tr>
+        <td><button type="button" class="btn btn-default btn-lg btn-circle" 
+                    ng-show="btnVisible" ng-click="menu()">
+                <span class="glyphicon glyphicon-align-justify"></span> 
+            </button></td>
+        <td><h3>{{titre}}</h3></td>
+    </tr>
+</table> 
+
+<!-- menu déroulant-->
+<div  uib-collapse="isCollapsed" > 
+    <div class="well well-lg"> 
+        <div ng-include src="srcMenu"></div> 
+    </div> 
+</div> 
+
