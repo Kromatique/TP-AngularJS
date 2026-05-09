@@ -18,13 +18,21 @@ app.config(function ($routeProvider) {
             templateUrl: 'vues/rapports.html',
             controller: 'rapportsController'
         })
-        .when('/choisirRapport', {
+        .when('/choisirrapport', {
             templateUrl: 'vues/choisirRapport.html',
             controller: 'choisirRapportController'
         })
         .when('/majrapport', {
             templateUrl: 'vues/majRapport.html',
             controller: 'majRapportController'
+        })
+        .when('/majmedecin', {
+            templateUrl: 'vues/majMedecin.html',
+            controller: 'majMedecinController'
+        })
+        .when('/derniersrapports', {
+            templateUrl: 'vues/derniersRapports.html',
+            controller: 'derniersRapportsController'
         })
         .otherwise({ redirectTo: '/' });
 
