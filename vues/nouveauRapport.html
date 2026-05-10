@@ -1,0 +1,26 @@
+<div class="row">
+    <div ng-include src="'vues/medecins.html'"></div>
+    <div class="col-lg-6">
+        <div ng-include src="'vues/medicamentOffert.html'"></div>
+    </div>
+</div>
+<div class="row">
+    <form class="col-lg-6">
+        <div class="form-group">
+            <label for="motif">Motif de la visite</label>
+            <input type="text" ng-model="r.motif" class="form-control" id="motif" placeholder="Motif de la visite" />
+        </div>
+        <div class="form-group">
+            <label for="bilan">Bilan de la visite</label>
+            <textarea ng-model="r.bilan" class="form-control" id="bilan" placeholder="Bilan de la visite"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="date">Date de la visite</label>
+            <input type="date" ng-model="r.date" class="form-control" id="date" />
+        </div>
+    </form>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+    </div>
+</div>

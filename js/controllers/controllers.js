@@ -255,3 +255,110 @@ app.controller('derniersRapportsController', function ($scope, $http, $rootScope
             }
         });
 });
+
+app.controller('nouveauRapportController', function ($scope, $http, $rootScope, $location) {
+    $scope.titre = "Ajout d'un rapport";
+    $scope.srcMenu = "vues/menuRapports.html";
+    $scope.btnVisible = true;
+    $scope.isCollapsed = true;
+    $scope.menu = function () {
+        $scope.isCollapsed = !$scope.isCollapsed;
+    };
+
+    // Objet pour le rapport
+    $scope.r = {
+        date: new Date()
+    };
+
+    // Logique de recherche de médecin
+    $scope.rechercheMedecin = {};
+    $scope.medecins = [];
+
+    $scope.chargerMedecins = function () {
+        var nomMedecin = $scope.rechercheMedecin.nom;
+        if (nomMedecin && nomMedecin.length > 1) {
+            var req = {
+                method: 'POST',
+                url: 'ajax/traiterrecherchemedecins.php',
+                data: { nomMedecin: nomMedecin }
+            };
+            $http(req)
+                .then(function (response) {
+                    $scope.medecins = response.data;
+                });
+        }
+    };
+
+    $scope.choisirMedecin = function (medecin) {
+        $scope.rechercheMedecin.nom = medecin.nom + " " + medecin.prenom;
+        $scope.r.idMedecin = medecin.id;
+        $scope.medecins = [];
+    };
+
+    // Logique de recherche de médicament
+    $scope.rechercheMedicament = {};
+    $scope.medicaments = [];
+    $scope.r.lesMedicaments = [];
+    $scope.nbExemplaires = 1;
+
+    $scope.chargerMedicaments = function () {
+        var nomMedicament = $scope.rechercheMedicament.nom;
+        if (nomMedicament && nomMedicament.length > 1) {
+            var req = {
+                method: 'POST',
+                url: 'ajax/traiterrecherchemedicaments.php',
+                data: { nomMedicament: nomMedicament }
+            };
+            $http(req)
+                .then(function (response) {
+                    $scope.medicaments = response.data;
+                });
+        }
+    };
+
+    $scope.choisirMedicament = function (medicament) {
+        $scope.rechercheMedicament.nom = medicament.nomCommercial;
+        $scope.medicamentChoisi = medicament;
+        $scope.medicaments = [];
+    };
+
+    $scope.ajouterMedicament = function () {
+        if ($scope.medicamentChoisi) {
+            $scope.r.lesMedicaments.push({
+                idMedicament: $scope.medicamentChoisi.id,
+                nomCommercial: $scope.medicamentChoisi.nomCommercial,
+                qte: $scope.nbExemplaires
+            });
+            $scope.rechercheMedicament.nom = "";
+            $scope.medicamentChoisi = null;
+        }
+    };
+
+    $scope.retirerMedicament = function () {
+        $scope.r.lesMedicaments.pop();
+    };
+
+    $scope.enregistrer = function () {
+        $scope.msgSucces = false;
+        $scope.msgErreur = false;
+        var req = {
+            method: 'POST',
+            url: 'ajax/traiterajouterrapport.php',
+            data: {
+                idMedecin: $scope.r.idMedecin,
+                bilan: $scope.r.bilan,
+                motif: $scope.r.motif,
+                date: $scope.r.date,
+                lesMedicaments: $scope.r.lesMedicaments
+            }
+        };
+        $http(req)
+            .then(function (response) {
+                if (response.data == 1) {
+                    $scope.msgSucces = true;
+                } else {
+                    $scope.msgErreur = true;
+                }
+            });
+    };
+});

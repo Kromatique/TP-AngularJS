@@ -34,6 +34,10 @@ app.config(function ($routeProvider) {
             templateUrl: 'vues/derniersRapports.html',
             controller: 'derniersRapportsController'
         })
+        .when('/nouveauRapport', {
+            templateUrl: 'vues/nouveauRapport.html',
+            controller: 'nouveauRapportController'
+        })
         .otherwise({ redirectTo: '/' });
 
 });
