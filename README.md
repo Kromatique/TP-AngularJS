@@ -5,7 +5,7 @@ Le projet **GSB Rapports** s'inscrit dans le cadre du suivi de l'activité des v
 
 ### 2. Architecture et Technologies
 Ce projet met en œuvre une architecture moderne et performante de type **SPA (Single Page Application)** :
-*   **Langages et Outils** : **HTML5/CSS3** avec le framework **Bootstrap** pour un design propre et adaptatif. Le front-end s'appuie sur le framework **AngularJS 1.x** pour le dynamisme, tandis que le back-end utilise **PHP 8** couplé à une base de données **MySQL**.
+*   **Langages et Outils** : **HTML5/CSS3** avec le framework **Bootstrap** pour un design propre et adaptatif. Le front-end s'appuie sur le framework **AngularJS** pour le dynamisme, tandis que le back-end utilise **PHP 8** couplé à une base de données **MySQL**.
 *   **Architecture Client/Serveur découplée** :
     *   **Le Client (Front-end)** : Construit en AngularJS, il gère entièrement l'affichage et la navigation sans recharger la page. Il utilise un système de routage (`$routeProvider`) pour afficher dynamiquement les différents écrans de l'application dans un conteneur unique.
     *   **Le Serveur (Back-end/API)** : Conçu selon le modèle **MVC (Modèle-Vue-Contrôleur)**. Des scripts PHP légers servent de contrôleurs d'API (dossier `/ajax`) et communiquent avec un Modèle d'accès aux données centralisé (`PdoGsbRapports`) pour interroger la base de données.
